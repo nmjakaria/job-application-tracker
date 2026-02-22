@@ -20,7 +20,7 @@ const filterSection = document.getElementById('filter-card-section');
 const mainContainer = document.querySelector('main');
 const allCardSection = document.getElementById('all-cards');
 
-
+// Number of card calculation
 function calculateCard() {
 
     let totalCard = allCardSection.children.length;
@@ -41,7 +41,7 @@ function calculateCard() {
 }
 calculateCard()
 
-
+// Check card if empty
 function checkEmptyState(listLength) {
 
     if (listLength === 0) {
@@ -52,7 +52,7 @@ function checkEmptyState(listLength) {
 
 }
 
-
+// Button toggle Style and change property
 function toggleStyle(id) {
     const selected = document.getElementById(id);
 
@@ -95,7 +95,7 @@ function toggleStyle(id) {
     calculateCard()
 }
 
-
+// Create an object for getting card information.
 function getCardInfo(parentNode, statusText) {
     return {
         id: parentNode.dataset.id,
@@ -107,8 +107,10 @@ function getCardInfo(parentNode, statusText) {
     }
 }
 
+
 // this is a card function for creating card in filter section
 function createCardHTML(data) {
+    //This variable use only for changing badge in filter section.
     let badgeClass = "bg-[#EBF2FF] text-[#002C5C]";
 
     if (data.status === "Interview") {
@@ -150,6 +152,7 @@ function createCardHTML(data) {
     </div>`;
 }
 
+//Render List for showing card in filter section.
 function renderList(list) {
 
     filterSection.innerHTML = '';
@@ -167,7 +170,7 @@ function renderList(list) {
     checkEmptyState(list.length);
 }
 
-
+//This is main event Listener
 
 mainContainer.addEventListener('click', function (event) {
 
@@ -213,7 +216,7 @@ mainContainer.addEventListener('click', function (event) {
     calculateCard()
 });
 
-
+//All card section badge update function
 function updateAllCardBadge(id, status) {
 
     const card = allCardSection.querySelector(`[data-id="${id}"]`);
@@ -257,5 +260,3 @@ function deleteCard(button) {
 
     calculateCard();
 }
-
-
