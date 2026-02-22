@@ -233,6 +233,32 @@ function updateAllCardBadge(id, status) {
     }
 }
 
+//Delete function for deleting card from every section
+function deleteCard(button) {
 
+    if (!confirm('Are you sure you want to delete this job?')) return;
+
+    const card = button.closest('.job-card');
+    const id = card.dataset.id;
+
+    interviewList = interviewList.filter(i => i.id !== id);
+    rejectedList = rejectedList.filter(i => i.id !== id);
+
+    const allCard = allCardSection.querySelector(`[data-id="${id}"]`);
+    if (allCard) allCard.remove();
+    card.remove();
+
+    if (currentStatus === 'interview-btn') {
+        checkEmptyState(interviewList.length);
+    }
+    else if (currentStatus === 'rejected-btn') {
+        checkEmptyState(rejectedList.length);
+    }
+    else {
+        checkEmptyState(allCardSection.children.length);
+    }
+
+    calculateCard();
+}
 
 
