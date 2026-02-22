@@ -209,9 +209,6 @@ mainContainer.addEventListener('click', function (event) {
     }
     if (currentStatus === 'interview-btn') renderList(interviewList);
     else if (currentStatus === 'rejected-btn') renderList(rejectedList);
-    // checkEmptyState(interviewList.length);
-    // checkEmptyState(rejectedList.length);
-    // checkEmptyState(allCardSection.children.length);
 
     calculateCard()
 });
