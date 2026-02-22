@@ -164,7 +164,7 @@ function renderList(list) {
 
         filterSection.appendChild(div);
     });
-
+    checkEmptyState(list.length);
 }
 
 
