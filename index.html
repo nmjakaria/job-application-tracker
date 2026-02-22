@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/jobs.png" type="image/x-icon">
+    <title>Job Application Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+        body {
+            background-color: #F8FAFC;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="container mx-auto px-4">
+        <div class="title text-[#002C5C] py-8">
+            <h1 class="text-3xl font-bold">Job Application Tracker</h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-sm border border-base-200 p-6">
+                <p class="text-neutral text-[#323B49] font-medium">Total</p>
+                <h2 id="total" class="text-4xl font-bold text-[#002C5C] mt-2">0</h2>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm border border-base-200 p-6">
+                <p class="text-neutral text-[#323B49] font-medium">Interview</p>
+                <h2 id="interviewCount" class="text-4xl font-bold text-[#10B981] mt-2">0</h2>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm border border-base-200 p-6">
+                <p class="text-neutral text-[#323B49] font-medium">Rejected</p>
+                <h2 id="rejectedCount" class="text-4xl font-bold text-[#EF4444] mt-2">0</h2>
+            </div>
+        </div>
+    </header>
+
+    <hr class="container mx-auto my-5 border-t-2 border-base-300">
+
+    <main class="container mx-auto px-4">
+        <div class="jobs-section-title">
+            <div class="flex items-center justify-between border-b border-base-300 pb-4 mt-12 mb-6">
+                <h2 id="jobHeaderTitle" class="text-2xl font-bold text-[#002C5C]">Available Jobs</h2>
+                <div class="text-neutral-800 font-medium"><span id="totalJobs"></span> jobs</div>
+            </div>
+        </div>
+
+        <div class="flex gap-4 mb-8">
+            <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn"
+                class="btn bg-[#3B82F6] hover:bg-[#2563EB] text-white border-none px-8">
+                All
+            </button>
+
+            <button onclick="toggleStyle('interview-btn')" id="interview-btn"
+                class="btn btn-outline border-base-300 text-slate-500 hover:bg-base-200 hover:text-slate-700 px-8">
+                Interview
+            </button>
+
+            <button onclick="toggleStyle('rejected-btn')" id="rejected-btn"
+                class="btn btn-outline border-base-300 text-slate-500 hover:bg-base-200 hover:text-slate-700 px-8">
+                Rejected
+            </button>
+        </div>
+
+        <!-- filter card section -->
+        <section id="filter-card-section" class="hidden">
+
+        </section>
+
+        <!-- Jobs card section -->
+        <section id="all-cards">
+            <!-- job-1 -->
+            <div data-id="job-1"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">Mobile First Corp</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">React Native Developer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Remote • Full-time • $130,000 - $175,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">
+                            Not Applied
+                        </span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Build cross-platform mobile applications using React Native. Work on products used by millions
+                        of
+                        users
+                        worldwide.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">
+                            Interview
+                        </button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">
+                            Rejected
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-2 -->
+            <div data-id="job-2"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">WebFlow Agency</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">Web Designer & Developer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Los Angeles, CA • Part-time • $80,000 - $120,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Create stunning web experiences for high-profile clients. Must have portfolio and experience
+                        with modern web design trends.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-3 -->
+            <div data-id="job-3"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">DataViz Solutions</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">Data Visualization Specialist</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Boston, MA • Full-time • $125,000 - $155,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong
+                        analytical thinking.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-4 -->
+            <div data-id="job-4"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">CloudFirst Inc</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">Backend Developer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Seattle, WA • Full-time • $140,000 - $190,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps
+                        practices and cloud infrastructure.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-5 -->
+            <div data-id="job-5"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">Innovation Labs</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">UI/UX Engineer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Austin, TX • Full-time • $110,000 - $150,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Create beautiful and functional user interfaces for our suite of products. Strong design skills
+                        and frontend development expertise required.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-6 -->
+            <div data-id="job-6"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">MegaCorp Solutions</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">JavaScript Developer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>New York, NY • Full-time • $130,000 - $170,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Build enterprise applications with JavaScript and modern frameworks. We offer competitive
+                        compensation, health insurance, and professional development opportunities.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-7 -->
+            <div data-id="job-7"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">StartupXYZ</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">Full Stack Engineer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>Remote • Full-time • $120,000 - $160,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        Join our fast-growing startup and work on our core platform. Experience with Node.js and React
+                        required. Great benefits and equity package included.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            <!-- job-8 -->
+            <div data-id="job-8"
+                class="job-card card bg-base-100 border border-base-200 shadow-sm p-6 mb-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1 hover:border-slate-300">
+                <div class="relative">
+                    <button onclick="(deleteCard(this))"
+                        class="btn btn-circle btn-ghost btn-sm absolute right-2 top-2 border border-base-200 p-1.5 hover:bg-error/10 hover:text-error transition-colors">
+                        <img src="image/delete-btn.png" alt="Delete" class="w-full h-full object-contain">
+                    </button>
+                    <div>
+                        <h3 class="job-title text-xl font-bold text-[#002C5C]">TechCorp Industries</h3>
+                        <p class="job-subtitle text-slate-500 font-medium">Senior Frontend Developer</p>
+                    </div>
+                    <div class="job-info flex flex-wrap gap-2 text-slate-500 text-sm mt-4">
+                        <h3>San Francisco, CA • Full-time • $130,000 - $175,000</h3>
+                    </div>
+                    <div class="mt-4">
+                        <span
+                            class="status-badge bg-[#EBF2FF] text-[#002C5C] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Not
+                            Applied</span>
+                    </div>
+                    <p class="job-details text-slate-600 mt-4 leading-relaxed">
+                        We are looking for an experienced Frontend Developer to build scalable web applications using
+                        React and TypeScript. You will work with a talented team on cutting-edge projects.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            class="interview-btn btn btn-outline btn-success btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Interview</button>
+                        <button
+                            class="rejected-btn btn btn-outline btn-error btn-sm px-6 font-bold uppercase text-[12px] tracking-wide">Rejected</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- No jobs section -->
+        <section id="emptyState" class="container hidden">
+            <div class="emptyCard flex flex-col items-center justify-center bg-base-100 rounded-xl py-16">
+                <img src="image/jobs.png" class="w-60 mb-4" alt="">
+                <h3 class="text-xl font-bold text-[#002C5C]">No jobs available</h3>
+                <p class="text-slate-700 text-sm mt-1">Check back soon for new job opportunities</p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
