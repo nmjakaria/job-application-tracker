@@ -25,3 +25,27 @@ newDiv.id = "new-box";
 ### Insert it into the DOM
 const parent = document.getElementById("container"); <br>
 parent.appendChild(newDiv);
+
+## Que-3: What is Event Bubbling? And how does it work?
+## Ans-3:
+Event Bubbling is how events in the DOM “bubble up” from the element we clicked to its parent elements. Its work like that: <br> when we click a button inside a div → the button gets the click first → then the div → then the body → then the document. <br><br>
+Let, we have a html like that: <br>
+    `<div id="parent">
+        <button id="child">Click Me</button>
+    </div>`
+<br>
+And if we add js in here: <br>
+
+    document.getElementById("child").addEventListener("click", function () {
+    console.log("Button Clicked");
+    });
+
+    document.getElementById("parent").addEventListener("click", function () {
+    console.log("Div Clicked");
+    });
+then, if we click the button we will got output like that:<br>
+`Button Clicked` <br>
+`Div Clicked`
+
+I mean it work like <br> `button → div → body → html → document`
+or <br> `Child ➝ Parent ➝ Grandparent ➝ ... ➝ Top`
