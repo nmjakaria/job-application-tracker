@@ -14,7 +14,7 @@ const interviewBtn = document.getElementById('interview-btn');
 const rejectedBtn = document.getElementById('rejected-btn');
 const buttons = [allFilterBtn, interviewBtn, rejectedBtn];
 const activeClasses = ['bg-[#3B82F6]', 'hover:bg-[#2563EB]', 'text-white', 'border-none'];
-const defaultClasses = ['btn-outline', 'border-base-300', 'text-slate-500', 'hover:bg-base-200', 'hover:text-slate-700'];
+const defaultClasses = ['btn-outline', 'bg-white', 'border-base-300', 'text-slate-500', 'hover:bg-base-200', 'hover:text-slate-700'];
 
 const filterSection = document.getElementById('filter-card-section');
 const mainContainer = document.querySelector('main');
