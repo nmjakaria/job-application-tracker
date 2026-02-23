@@ -15,16 +15,16 @@ To create and insert a new element into the DOM, we can follow three main steps:
   3. Insert it into the DOM
 
 ### Create the Element
-#### const newDiv = document.createElement("div");
+`const newDiv = document.createElement("div");`
 
 ### Add content
-newDiv.innerText = "This is a new div"; <br>
-newDiv.classList.add("box"); <br>
-newDiv.id = "new-box";
+`newDiv.innerText = "This is a new div";` <br>
+`newDiv.classList.add("box");` <br>
+`newDiv.id = "new-box";`
 
 ### Insert it into the DOM
-const parent = document.getElementById("container"); <br>
-parent.appendChild(newDiv);
+`const parent = document.getElementById("container");` <br>
+`parent.appendChild(newDiv);`
 
 ## Que-3: What is Event Bubbling? And how does it work?
 ## Ans-3:
