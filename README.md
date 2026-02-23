@@ -49,3 +49,80 @@ then, if we click the button we will got output like that:<br>
 
 I mean it work like <br> `button → div → body → html → document`
 or <br> `Child ➝ Parent ➝ Grandparent ➝ ... ➝ Top`
+
+## Que-4: What is Event Delegation in JavaScript? Why is it useful?
+## Ans-4:
+Event Delegation is a technique where we attach one event listener to a parent element instead of adding separate listeners to multiple child elements; and let event bubbling do the work.
+
+Events triggered on child elements bubble up to their parent.
+
+That means:
+If we click a `<li>` inside a `<ul>`, the click event moves from: <br>
+`li → ul → body → document`
+
+Let see one example for this. Supposed we have a html like that: <br>
+```html
+<ul id="list">
+  <li class="item">Item 1</li>
+  <li class="item">Item 2</li>`
+</ul>
+```
+
+If we write js for this list than:
+```javascript
+document.getElementById("list").addEventListener("click", function (event) {
+  if (event.target.classList.contains("item")) {
+   console.log("Item clicked:", event.target.textContent);
+   }
+});
+```
+<br><br>
+we get output like this: <br>
+`Item clicked: Item 1` <br>
+`Item clicked: Item 2` <br><br>
+here only one listener on `<ul>` <br> Detects clicks on any `<li>` <br> Works even if new `<li>` are added later.
+
+It’s Useful for improves performance. Saves memory. Handles dynamic elements automatically. Cleaner & more maintainable code
+
+Especially helpful in:
+1. Dynamic lists
+2. Tables
+3. Menus
+4. Cards generated with JavaScript
+
+## Que-5: What is the difference between preventDefault() and stopPropagation() methods?
+## Ans-5:
+
+
+`preventDefault()`:
+Stops the **default browser behavior** of an element.
+
+Example:
+
+* Clicking a link normally opens a new page
+* Submitting a form normally reloads the page
+
+we can stop that:
+
+```javascript
+document.querySelector("a").addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("Link won't open now");
+});
+```
+
+`stopPropagation()`: Stops the event from **bubbling up** to parent elements.
+
+
+```javascript
+document.getElementById("child").addEventListener("click", function (event) {
+  event.stopPropagation();
+  console.log("Child clicked only");
+});
+```
+
+* `preventDefault()` when you don’t want the browser to do its normal thing
+* `stopPropagation()` when you don’t want parent elements reacting
+
+These two often get mixed up because they’re both used inside event handlers — but they solve **completely different problems**.
+

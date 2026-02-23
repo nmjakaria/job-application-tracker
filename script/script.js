@@ -236,7 +236,8 @@ function updateAllCardBadge(id, status) {
 //Delete function for deleting card from every section
 function deleteCard(button) {
 
-    if (!confirm('Are you sure you want to delete this job?')) return;
+    if (!confirm('Are you sure you want to delete this job?'))
+    return;
 
     const card = button.closest('.job-card');
     const id = card.dataset.id;
